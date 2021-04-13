@@ -1,0 +1,10 @@
+util\email\ConfigConsts.class
+util\ApplicationProperties.class
+core\EmailSender$1.class
+util\email\MailServers.class
+util\EnviromentUtil.class
+util\TestIdGenerator.class
+core\Environment.class
+core\ScreenShot.class
+core\EmailSender.class
+util\email\MailMessageUtils.class
