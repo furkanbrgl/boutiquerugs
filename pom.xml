@@ -77,11 +77,6 @@
                 <version>2.18.1</version>
                 <configuration>
                     <systemPropertyVariables>
-                        <env>${test.environment}</env>
-                        <boutique.rugs.user.email>${boutique.rugs.user.info}</boutique.rugs.user.email>
-                        <boutique.rugs.user.password>${boutique.rugs.user.info}</boutique.rugs.user.password>
-                        <web.driver>${web.driver}</web.driver>
-                        <test.result.email.address>${test.result.email.address}</test.result.email.address>
                     </systemPropertyVariables>
                     <junitArtifactName>junit:junit</junitArtifactName>
 
