@@ -5,8 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.boutiquerugs</groupId>
-    <artifactId>boutiquerugs</artifactId>
+    <artifactId>boutiquerugs-qa</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>boutiquerugs-qa</name>
 
     <properties>
         <maven.compiler.source>15</maven.compiler.source>
