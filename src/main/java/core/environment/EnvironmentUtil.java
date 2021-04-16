@@ -1,4 +1,4 @@
-package util;
+package core.environment;
 
 import org.apache.log4j.Logger;
 
@@ -81,12 +81,16 @@ public class EnviromentUtil {
     }
 
     private boolean isEnvironmentProd(){
-        if (System.getProperty("env") == null) {
-            LOGGER.info("Enviroment is DEV !!");
-            return false;
+        if(System.getProperty("env") != null) {
+            if (System.getProperty("env").equals(Environment.DEV.name())) {
+                LOGGER.info("Enviroment is DEV !!");
+                return false;
+            } else {
+                LOGGER.info("Enviroment is PROD !!");
+                return true;
+            }
         } else {
-            LOGGER.info("Enviroment is PROD !!");
-            return true;
+            return false;
         }
     }
 }

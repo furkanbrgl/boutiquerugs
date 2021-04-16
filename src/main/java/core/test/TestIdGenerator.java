@@ -6,7 +6,7 @@ public class TestIdGenerator {
 
     public static String generate(Environment environment) {
 
-        if (environment == Environment.PRE_PROD) {
+        if (environment == Environment.DEV) {
 
             return "test";
 
