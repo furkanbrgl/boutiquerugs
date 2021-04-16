@@ -7,7 +7,6 @@
     <groupId>com.boutiquerugs</groupId>
     <artifactId>boutiquerugs-qa</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>boutiquerugs-qa</name>
 
     <properties>
         <maven.compiler.source>15</maven.compiler.source>
