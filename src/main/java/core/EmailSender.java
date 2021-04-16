@@ -1,9 +1,9 @@
 package core;
 
+import core.environment.EnvironmentUtil;
 import org.apache.log4j.Logger;
-import util.EnviromentUtil;
-import util.email.ConfigConsts;
-import util.email.MailMessageUtils;
+import core.email.ConfigConsts;
+import core.email.MailMessageUtils;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -22,15 +22,38 @@ public class EmailSender {
         Message message = new MimeMessage(getSession());
 
         // Set From: header field of the header.
-        message.setFrom(new InternetAddress(EnviromentUtil.getInstance().getFromEmailAddress()));
+        message.setFrom(new InternetAddress(EnvironmentUtil.getInstance().getFromEmailAddress()));
         // Set To: header field of the header.
         message.setRecipients(Message.RecipientType.TO,
-                InternetAddress.parse(EnviromentUtil.getInstance().getTestResultEmailAddress()));
+                InternetAddress.parse(EnvironmentUtil.getInstance().getTestResultEmailAddress()));
         // Set Subject: header field
         message.setSubject(emailSubject);
 
         // Get Multipart Object with Message Body and Attachments
         Multipart multipart = MailMessageUtils.messageMultipart(listOfAttachments, bodyContent);
+
+        // Set the multiplart object (message body + files) to the message object
+        message.setContent(multipart);
+
+        Transport.send(message);
+        LOGGER.info("Email message was sent");
+
+    }
+
+    public static void sendEmail(String emailSubject, String bodyContent) throws MessagingException {
+
+        Message message = new MimeMessage(getSession());
+
+        // Set From: header field of the header.
+        message.setFrom(new InternetAddress(EnvironmentUtil.getInstance().getFromEmailAddress()));
+        // Set To: header field of the header.
+        message.setRecipients(Message.RecipientType.TO,
+                InternetAddress.parse(EnvironmentUtil.getInstance().getTestResultEmailAddress()));
+        // Set Subject: header field
+        message.setSubject(emailSubject);
+
+        // Get Multipart Object with Message Body and Attachments
+        Multipart multipart = MailMessageUtils.messageMultipart(null, bodyContent);
 
         // Set the multiplart object (message body + files) to the message object
         message.setContent(multipart);
@@ -54,8 +77,8 @@ public class EmailSender {
         Session session = Session.getInstance(props,
                 new Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(EnviromentUtil.getInstance().getFromEmailAddress(),
-                                EnviromentUtil.getInstance().getEmailUserPassword());
+                        return new PasswordAuthentication(EnvironmentUtil.getInstance().getFromEmailAddress(),
+                                EnvironmentUtil.getInstance().getEmailUserPassword());
                     }
                 });
 

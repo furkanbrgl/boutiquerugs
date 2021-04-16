@@ -1,8 +1,8 @@
 package functional;
 
 import core.EmailSender;
-import core.TestStatus;
-import util.email.ConfigConsts;
+import core.test.TestStatus;
+import core.email.ConfigConsts;
 
 import javax.mail.MessagingException;
 import java.io.File;

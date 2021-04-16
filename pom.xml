@@ -14,7 +14,7 @@
         <boutique.rugs.user.info>BOUTIQUE RUGS USER INFO POM</boutique.rugs.user.info>
         <chrome.driver>webdriver.chrome.driver</chrome.driver>
         <test.result.email.address>TEST RESULT EMAIL ADDRESS POM</test.result.email.address>
-        <test.environment>DEV</test.environment>
+        <env>DEV</env>
     </properties>
 
     <name>Boutiquerugs.com QA Test Project</name>

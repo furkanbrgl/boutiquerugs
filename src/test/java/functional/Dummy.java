@@ -2,13 +2,13 @@ package functional;
 
 import core.EmailSender;
 import core.ScreenShot;
-import core.TestStatus;
+import core.test.TestStatus;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import util.EnviromentUtil;
+import core.environment.EnvironmentUtil;
 
 import java.io.File;
 import java.util.List;
@@ -23,9 +23,9 @@ public class Dummy {
         final Logger LOGGER = Logger.getLogger(Dummy.class);
 
         WebDriver webDriver = null;
-        String url = EnviromentUtil.getInstance().getResourceBaseURL();
-        String driverType = EnviromentUtil.getInstance().getChromeDriver();
-        String driverPath = EnviromentUtil.getInstance().getChromeDriverPath();
+        String url = EnvironmentUtil.getInstance().getResourceBaseURL();
+        String driverType = EnvironmentUtil.getInstance().getChromeDriver();
+        String driverPath = EnvironmentUtil.getInstance().getChromeDriverPath();
 
         String email = "brgl.furkan@gmail.com";
         String password = "Asd123!";

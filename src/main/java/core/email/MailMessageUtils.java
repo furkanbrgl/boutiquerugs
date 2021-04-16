@@ -1,4 +1,4 @@
-package util.email;
+package core.email;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -27,7 +27,9 @@ public class MailMessageUtils {
         multipart.addBodyPart(messageBody);
 
         // Add Files to multipart
-        addFileToMultipart(listOfFlies, multipart);
+        if(listOfFlies != null) {
+            addFileToMultipart(listOfFlies, multipart);
+        }
 
         return multipart;
     }

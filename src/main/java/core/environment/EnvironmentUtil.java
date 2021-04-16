@@ -8,19 +8,19 @@ import java.util.Properties;
 /**
  * Created by furkanbrgl on 04/04/2021.
  */
-public class EnviromentUtil {
+public class EnvironmentUtil {
 
     private final static String devPropertyName = "dev.environment.properties";
     private final static String prodPropertyName = "prod.environment.properties";
 
-    private final static Logger LOGGER = Logger.getLogger(EnviromentUtil.class);
+    private final static Logger LOGGER = Logger.getLogger(EnvironmentUtil.class);
 
-    private static EnviromentUtil instance = new EnviromentUtil();
-    public static EnviromentUtil getInstance() {
+    private static EnvironmentUtil instance = new EnvironmentUtil();
+    public static EnvironmentUtil getInstance() {
         return instance;
     }
 
-    private EnviromentUtil() {
+    private EnvironmentUtil() {
         this.loadToSystemFile();
     }
 
@@ -90,6 +90,7 @@ public class EnviromentUtil {
                 return true;
             }
         } else {
+            LOGGER.info("Enviroment is DEV !!");
             return false;
         }
     }

@@ -3,7 +3,10 @@ package scenarios;
 import core.BaseTest;
 import core.EmailSender;
 import core.ScreenShot;
-import core.TestStatus;
+import core.SeleniumUtil;
+import core.environment.EnvironmentUtil;
+import core.test.TestResult;
+import core.test.TestStatus;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -12,8 +15,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import util.DateUtil;
-import util.EnviromentUtil;
-import util.TestResult;
 
 import java.util.Date;
 
@@ -24,16 +25,22 @@ public class LoginTest extends BaseTest {
     @Test
     public void LoginTest() {
 
-        String brEmail = EnviromentUtil.getInstance().getBrEmail();
-        String brPassword = EnviromentUtil.getInstance().getBrPassword();
+        String brEmail = EnvironmentUtil.getInstance().getBrEmail();
+        String brPassword = EnvironmentUtil.getInstance().getBrPassword();
+        String orderTagXPath = "/html/body/div[3]/div[1]/h1";
+        String passwordValidationMessageXPath = "/html/body/div[3]/div[1]/div/div[1]/p/span";
 
         try {
 
             LOGGER.info("Login test is starting");
-            WebDriverWait wait = new WebDriverWait(webDriver, 10);
+            WebDriverWait wait = new WebDriverWait(webDriver, 20);
 
             JavascriptExecutor javascript = (JavascriptExecutor) this.webDriver;
             javascript.executeScript("document.getElementsByClassName(\"account-icon\")[0].click()");
+
+            LOGGER.info("Wait for items to be set up " + System.currentTimeMillis());
+            SeleniumUtil.sleep(5000);
+            LOGGER.info("Waited for items to be set up " + System.currentTimeMillis());
 
             WebElement emailElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("login_email")));
             emailElement.sendKeys(brEmail);
@@ -42,25 +49,37 @@ public class LoginTest extends BaseTest {
 
 
             WebElement submitElement = webDriver.findElement(By.xpath("/html/body/div[3]/div[1]/div/div/form/div[3]/input"));
-            if (submitElement.isDisplayed()) {
-                submitElement.click();
-            } else {
-                wait.until(ExpectedConditions.visibilityOf(submitElement));
-            }
+            submitElement.click();
 
+            if (SeleniumUtil.existsElementByXpath(orderTagXPath, webDriver)) {
+                LOGGER.info("Login Successful");
+                this.testCustomResult = "LOGIN SUCCESSFUL" + System.lineSeparator();
+            } else if (SeleniumUtil.existsElementByXpath(passwordValidationMessageXPath, webDriver)) {
+                String message = webDriver.findElement(By.xpath(passwordValidationMessageXPath)).getText();
+                LOGGER.info(message);
+                TestResult.setTestResult(TestStatus.FAIL);
+                this.testCustomResult = message + System.lineSeparator();
+            }
+            else{
+                LOGGER.info("username password might not be correct");
+                TestResult.setTestResult(TestStatus.FAIL);
+                this.testCustomResult = "USERNAME PASSWORD MIGHT NOT BE CORRECT" + System.lineSeparator();
+
+            }
 
         } catch (Exception e) {
 
             LOGGER.error(e.getCause() + "-------------" + e.getMessage());
             TestResult.setTestResult(TestStatus.FAIL);
+            this.testCustomResult = e.getMessage();
             LOGGER.error(e.getCause() + "-------------" + e.getMessage());
 
         } finally {
-            LOGGER.error("Login test is finalizing " + DateUtil.formatDateWithTime(new Date(System.currentTimeMillis())));
+            LOGGER.info("Login test is finalizing " + DateUtil.formatDateWithTime(new Date(System.currentTimeMillis())));
             try {
                 this.contentBuilder.setUpResultParameters();
                 listOfScreenShotFiles = ScreenShot.takeSnapShot(webDriver);
-                EmailSender.sendEmail(TestResult.getTestResult(), contentBuilder.getHTMLContent(), listOfScreenShotFiles);
+                EmailSender.sendEmail(TestResult.getTestResult(), contentBuilder.getHTMLContent(this.testCustomResult), listOfScreenShotFiles);
             } catch (Exception e) {
                 e.printStackTrace();
             }

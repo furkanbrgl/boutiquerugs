@@ -1,6 +1,4 @@
-package util;
-
-import core.TestStatus;
+package core.test;
 
 public class TestResult {
 

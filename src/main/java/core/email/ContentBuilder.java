@@ -1,9 +1,9 @@
-package util.email;
+package core.email;
 
-import core.Environment;
+import core.environment.Environment;
 import util.DateUtil;
-import util.TestIdGenerator;
-import util.TestResult;
+import core.test.TestIdGenerator;
+import core.test.TestResult;
 
 import java.util.Date;
 
@@ -86,13 +86,15 @@ public class ContentBuilder {
      * TODO: will be developed as HTML generator page. furkan
      * @return
      */
-    public String getHTMLContent() {
+    public String getHTMLContent(String CustomResult) {
 
         String c = "Test ID : " + getTestID() + System.getProperty("line.separator") +
                     "Test Start Time : " + getTestStartTime() + System.getProperty("line.separator") +
                     "Test Finish Time : " + getTestFinishTime() + System.getProperty("line.separator") +
                     "Test Duration : " + getTestDuration() + System.getProperty("line.separator") +
-                    "Test Result Status : " + getTestResult() + System.getProperty("line.separator");
+                    "Test Result Status : " + getTestResult() + System.getProperty("line.separator") +
+                    System.getProperty("line.separator") + System.getProperty("line.separator") +
+                    "Test Result : " + CustomResult + System.getProperty("line.separator");
         return c;
     }
 }

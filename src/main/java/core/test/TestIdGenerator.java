@@ -1,6 +1,6 @@
-package util;
+package core.test;
 
-import core.Environment;
+import core.environment.Environment;
 
 public class TestIdGenerator {
 

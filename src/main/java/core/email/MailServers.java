@@ -1,4 +1,4 @@
-package util.email;
+package core.email;
 
 public enum MailServers {
 
