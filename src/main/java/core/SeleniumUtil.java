@@ -18,6 +18,15 @@ public class SeleniumUtil {
         return true;
     }
 
+    public static boolean existsElementByCssSelector(String css, WebDriver webDriver) {
+        try {
+            webDriver.findElement(By.cssSelector(css));
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+        return true;
+    }
+
     public static void sleep(long time) {
         try {
             Thread.sleep(time);

@@ -29,6 +29,7 @@ public class LoginTest extends BaseTest {
         String brPassword = EnvironmentUtil.getInstance().getBrPassword();
         String orderTagXPath = "/html/body/div[3]/div[1]/h1";
         String passwordValidationMessageXPath = "/html/body/div[3]/div[1]/div/div[1]/p/span";
+        String submitButtonXPath = "/html/body/div[3]/div[1]/div/div/form/div[3]/input";
 
         try {
 
@@ -48,8 +49,10 @@ public class LoginTest extends BaseTest {
             passwordElement.sendKeys(brPassword);
 
 
-            WebElement submitElement = webDriver.findElement(By.xpath("/html/body/div[3]/div[1]/div/div/form/div[3]/input"));
-            submitElement.click();
+            if (!SeleniumUtil.existsElementByXpath(submitButtonXPath, webDriver)) {
+                SeleniumUtil.sleep(4000);
+            }
+            webDriver.findElement(By.xpath(submitButtonXPath)).click();
 
             if (SeleniumUtil.existsElementByXpath(orderTagXPath, webDriver)) {
                 LOGGER.info("Login Successful");

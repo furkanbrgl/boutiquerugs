@@ -57,6 +57,7 @@ public class BaseTest {
 
         } catch (Exception e) {
             LOGGER.error("Page: " + url + " did not load within 60 seconds!");
+            TestResult.setTestResult(TestStatus.FAIL);
             this.contentBuilder.setUpResultParameters();
             try {
                 EmailSender.sendEmail("Environmental test problem", contentBuilder.getHTMLContent(e.getMessage()));
