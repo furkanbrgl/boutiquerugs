@@ -98,10 +98,15 @@ public class ReportBuilderWord implements ReportBuilder {
                     "Start Time : " + DateUtil.formatDateWithTime(report.getReportHeader().getStartTime()));
             rHeaderDetails.addBreak();
 
+            /**
+             * TODO: username, used paramaters, and Env info will be added to report.
+             */
+            //will be fixed
             rHeaderDetails
                     .setText("Finish Time : " + DateUtil.formatDateWithTime(report.getReportHeader().getFinishTime()));
             rHeaderDetails.addBreak();
 
+            //will be fixed
             if (report.getReportHeader().getUsedParameters().containsKey(testResultKey)) {
                 String testStatus = report.getReportHeader().getUsedParameters().get(testResultKey);
                 rHeaderDetails.setText("Test Status : " + testStatus);
@@ -196,7 +201,12 @@ public class ReportBuilderWord implements ReportBuilder {
                     rStepsHeader.setBold(true);
                     rStepsHeader.addCarriageReturn();
                     rStepsHeader.setColor(ReportColor.YELLOW.getValue());
-                } else {
+                } else if (rs.getReportStepType() == ReportStepType.SUCCESS) {
+                    rStepsHeader.setText("SUCCESS : " + rs.getStepHeader());
+                    rStepsHeader.setBold(true);
+                    rStepsHeader.addCarriageReturn();
+                    rStepsHeader.setColor(ReportColor.GREEN.getValue());
+                }  else {
                     rStepsHeader.setText(rs.getStepHeader());
                     rStepsHeader.setBold(true);
                     rStepsHeader.addCarriageReturn();

@@ -7,7 +7,8 @@ public enum ReportStepType {
 
     INFO("INFO"),
     WARN("WARNING"),
-    ERROR("ERROR");
+    ERROR("ERROR"),
+    SUCCESS("SUCCESS");
 
     private final String message;
 

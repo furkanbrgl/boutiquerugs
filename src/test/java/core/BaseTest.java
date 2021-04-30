@@ -5,8 +5,7 @@ import core.environment.EnvironmentUtil;
 import core.report.ReportBuilder;
 import core.report.ReportBuilderWord;
 import core.report.model.ReportHeader;
-import core.test.TestResult;
-import core.test.TestStatus;
+import core.report.model.ReportStep;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
@@ -16,10 +15,8 @@ import util.DateUtil;
 import util.ReportStepType;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
@@ -28,7 +25,6 @@ public class BaseTest {
     final Logger LOGGER = Logger.getLogger(BaseTest.class);
 
     public WebDriver webDriver = null;
-    public String testCustomResult;
     public ReportBuilder reportBuilder = new ReportBuilderWord();
     public String testID = EnvironmentUtil.getInstance().getTestId();
     public String getReportFilePathWithTestId = EnvironmentUtil.getInstance().getReportFilePath();
@@ -61,7 +57,6 @@ public class BaseTest {
                     new HashMap<String, String>());
             reportBuilder.addHeader(reportHeader);
 
-            TestResult.setTestResult(TestStatus.SUCCESSFUL);
             LOGGER.info("test is initializing... " + DateUtil.formatDateWithTime(new Date(System.currentTimeMillis())));
 
             System.setProperty(driverType, driverPath);
@@ -84,20 +79,26 @@ public class BaseTest {
 
         } catch (Exception e) {
             LOGGER.error("Page: " + url + " did not load within 60 seconds!");
-            TestResult.setTestResult(TestStatus.FAIL);
             LOGGER.error("Environmental test problem" + e.getMessage());
+            //webdriver has not been alive so we cant take a screenshot.
+            ReportStep reportStep = new ReportStep(testID,
+                    "Environmental Test Problem",
+                    "Page: " + url + " did not load within 60 seconds! -- " + e.getMessage() ,
+                    "ActiveURL",
+                    "screenshots do not exist",
+                    new Date(),
+                    ReportStepType.ERROR);
+            reportBuilder.addStep(reportStep);
+
             throw e;
-
         } finally {
-            LOGGER.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-            LOGGER.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-            LOGGER.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-            LOGGER.info("BASE TEST FINALLY");
-            LOGGER.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-            LOGGER.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-            LOGGER.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            LOGGER.info("Base test is finalizing " + DateUtil.formatDateWithTime(new Date(System.currentTimeMillis())));
+            try {
+                reportBuilder.buildReport(this.testID, getReportFilePathWithTestId );
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-
     }
 
     @After
