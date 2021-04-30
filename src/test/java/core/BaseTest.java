@@ -31,20 +31,27 @@ public class BaseTest {
     public String testCustomResult;
     public ReportBuilder reportBuilder = new ReportBuilderWord();
     public String testID = EnvironmentUtil.getInstance().getTestId();
-    private String reportFilePath = EnvironmentUtil.getInstance().getReportFilePath();
+    public String getReportFilePathWithTestId = EnvironmentUtil.getInstance().getReportFilePath();
+
 
     private String url = EnvironmentUtil.getInstance().getResourceBaseURL();
     private String driverType = EnvironmentUtil.getInstance().getChromeDriver();
     private String driverPath = EnvironmentUtil.getInstance().getChromeDriverPath();
     private String testName = EnvironmentUtil.getInstance().getTestName();
     private String userEmail = EnvironmentUtil.getInstance().getBrEmail();
-    public String getReportFilePathWithTestId = reportFilePath + testID + ".docx";
 
 
     @Before
     public final void setUp() throws Exception {
 
         try {
+
+            File directory = new File(getReportFilePathWithTestId + "\\" + testID);
+            if (! directory.exists()){
+                directory.mkdir();
+            }
+            this.getReportFilePathWithTestId = directory.getPath() + "\\" + testID + ".docx";
+
 
             //mapping will be later
             ReportHeader reportHeader = new ReportHeader(testID,
