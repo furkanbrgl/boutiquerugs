@@ -4,8 +4,6 @@ import core.BaseTest;
 import core.ScreenShot;
 import core.SeleniumUtil;
 import core.environment.EnvironmentUtil;
-import core.test.TestResult;
-import core.test.TestStatus;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -23,7 +21,7 @@ public class LoginTest extends BaseTest {
     final Logger LOGGER = Logger.getLogger(LoginTest.class);
 
     @Test
-    public void LoginTest() {
+    public void LoginTest() throws Exception {
 
         String brEmail = EnvironmentUtil.getInstance().getBrEmail();
         String brPassword = EnvironmentUtil.getInstance().getBrPassword();
@@ -56,35 +54,31 @@ public class LoginTest extends BaseTest {
 
             if (!SeleniumUtil.existsElementByXpath(orderTagXPath, webDriver)) {
                 String message = webDriver.findElement(By.xpath(passwordValidationMessageXPath)).getText();LOGGER.info(message);
-                TestResult.setTestResult(TestStatus.FAIL);
-                this.testCustomResult = message + System.lineSeparator();
             } else {
                 LOGGER.info("Login Successful");
-                this.testCustomResult = "LOGIN SUCCESSFUL" + System.lineSeparator();
+                ScreenShot.takeSnapShotAndAddToReportStep(webDriver,this.testID,
+                        "LOGIN SUCCESSFUL",
+                        "Test Has Been Completed",
+                        ReportStepType.SUCCESS,
+                        reportBuilder);
             }
-            LOGGER.info(testCustomResult);
 
         } catch (Exception e) {
 
             LOGGER.error(e.getCause() + "------------- LOGIN TEST TRY-CATCH" + e.getMessage());
-            TestResult.setTestResult(TestStatus.FAIL);
-            this.testCustomResult = e.getMessage();
-            LOGGER.info(testCustomResult);
+            ScreenShot.takeSnapShotAndAddToReportStep(webDriver,this.testID,
+                    "Boutique Rugs Quality Assurance Test",
+                    "Test Has Been Completed -- "  + e.getMessage(),
+                    ReportStepType.ERROR,
+                    reportBuilder);
             LOGGER.error(e.getCause() + "------------- LOGIN TEST TRY-CATCH" + e.getMessage());
+
             throw e;
 
         } finally {
             LOGGER.info("Login test is finalizing " + DateUtil.formatDateWithTime(new Date(System.currentTimeMillis())));
-            LOGGER.error("------------- LOGIN TEST FINALLY");
             try {
-                ScreenShot.takeSnapShotAndAddToReportStep(webDriver,this.testID,
-                        "Test Has Been Completed",
-                        "Boutique Rugs Quality Assurance Test",
-                        ReportStepType.INFO,
-                        reportBuilder);
-
                 reportBuilder.buildReport(this.testID, getReportFilePathWithTestId );
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
