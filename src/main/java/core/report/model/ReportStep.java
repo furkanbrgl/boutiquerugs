@@ -1,14 +1,15 @@
 /**
  *
  */
-package tr.com.turkcell.sahi.core.report.model;
+package core.report.model;
 
-import tr.com.turkcell.sahi.core.enums.ReportStepType;
+
+import util.ReportStepType;
 
 import java.util.Date;
 
 /**
- * @author Onur Erdogan
+ * @author Furkan Birgul
  */
 public class ReportStep {
 

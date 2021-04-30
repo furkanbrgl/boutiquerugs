@@ -59,6 +59,23 @@ public class EnvironmentUtil {
         return System.getProperty("chrome.path");
     }
 
+    public String getScreenShotsFilePath() {
+        return System.getProperty("screenshots.file.path");
+    }
+
+    public String getReportFilePath() {
+        return System.getProperty("report.file.path");
+
+    }
+
+    public String getTestId() {
+        return System.getProperty("test.id");
+    }
+
+    public String getTestName() {
+        return System.getProperty("test");
+    }
+
     public String getBrEmail() {
         return System.getProperty("boutique.rugs.user.email");
     }
@@ -94,4 +111,6 @@ public class EnvironmentUtil {
             return false;
         }
     }
+
+
 }

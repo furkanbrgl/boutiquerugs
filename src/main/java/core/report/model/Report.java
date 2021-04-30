@@ -1,13 +1,13 @@
 /**
  * 
  */
-package tr.com.turkcell.sahi.core.report.model;
+package core.report.model;
 
 import java.util.Date;
 import java.util.List;
 
 /**
- * @author Onur Erdogan
+ * @author Furkan Birgul
  *
  */
 public class Report {

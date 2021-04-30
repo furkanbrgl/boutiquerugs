@@ -1,18 +1,18 @@
 /**
  * 
  */
-package tr.com.turkcell.sahi.core.report.model;
+package core.report.model;
+
+import core.environment.Environment;
 
 import java.util.Date;
 import java.util.Map;
-
-import tr.com.turkcell.sahi.core.enums.Environment;
 
 /**
  * 
  * This class represent report header.
  * 
- * @author Onur Erdoğan
+ * @author Furkan Birgul
  *
  */
 public class ReportHeader {

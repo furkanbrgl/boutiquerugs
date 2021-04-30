@@ -1,33 +1,27 @@
 /**
  *
  */
-package tr.com.turkcell.sahi.core.report;
+package core.report;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import core.report.model.Report;
+import core.report.model.ReportHeader;
+import core.report.model.ReportStep;
+import org.apache.log4j.Logger;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.util.Units;
+import org.apache.poi.xwpf.usermodel.*;
+import util.DateUtil;
+import util.PasswordUtil;
+import util.ReportColor;
+import util.ReportStepType;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.util.Units;
-import org.apache.poi.xwpf.usermodel.*;
-
-import tr.com.turkcell.sahi.core.enums.ReportColor;
-import tr.com.turkcell.sahi.core.enums.ReportStepType;
-import tr.com.turkcell.sahi.core.report.model.Report;
-import tr.com.turkcell.sahi.core.report.model.ReportHeader;
-import tr.com.turkcell.sahi.core.report.model.ReportStep;
-import tr.com.turkcell.sahi.util.DateUtil;
-import tr.com.turkcell.sahi.util.PasswordUtil;
-
 /**
- * @author Onur Erdogan
+ * @author Furkan Birgul
  */
 public class ReportBuilderWord implements ReportBuilder {
 
@@ -97,20 +91,20 @@ public class ReportBuilderWord implements ReportBuilder {
 
             XWPFRun rHeaderDetails = headerDetails.createRun();
 
-            rHeaderDetails.setText("Test Numarası : " + report.getReportHeader().getTestId());
+            rHeaderDetails.setText("Test ID : " + report.getReportHeader().getTestId());
             rHeaderDetails.addBreak();
 
             rHeaderDetails.setText(
-                    "Başlangıç Zamanı : " + DateUtil.formatDateWithTime(report.getReportHeader().getStartTime()));
+                    "Start Time : " + DateUtil.formatDateWithTime(report.getReportHeader().getStartTime()));
             rHeaderDetails.addBreak();
 
             rHeaderDetails
-                    .setText("Bitiş Zamanı : " + DateUtil.formatDateWithTime(report.getReportHeader().getFinishTime()));
+                    .setText("Finish Time : " + DateUtil.formatDateWithTime(report.getReportHeader().getFinishTime()));
             rHeaderDetails.addBreak();
 
             if (report.getReportHeader().getUsedParameters().containsKey(testResultKey)) {
                 String testStatus = report.getReportHeader().getUsedParameters().get(testResultKey);
-                rHeaderDetails.setText("Test Durumu : " + testStatus);
+                rHeaderDetails.setText("Test Status : " + testStatus);
                 report.getReportHeader().getUsedParameters().remove(testResultKey);
             }
 
@@ -127,7 +121,7 @@ public class ReportBuilderWord implements ReportBuilder {
             userParameters.setBorderLeft(Borders.SINGLE);
 
             XWPFRun rUserParametersHeader = userParameters.createRun();
-            rUserParametersHeader.setText("Senaryoda Kullanılan Parametreler");
+            rUserParametersHeader.setText("Used Parameters");
             rUserParametersHeader.setBold(true);
             rUserParametersHeader.setFontSize(18);
             rUserParametersHeader.setUnderline(UnderlinePatterns.SINGLE);
@@ -167,7 +161,7 @@ public class ReportBuilderWord implements ReportBuilder {
             stepsHeader.setBorderLeft(Borders.DOUBLE);
 
             XWPFRun rStepsMainHeader = stepsHeader.createRun();
-            rStepsMainHeader.setText("Senaryoda Adımları");
+            rStepsMainHeader.setText("Scenario Steps");
             rStepsMainHeader.setBold(true);
             rStepsMainHeader.setFontSize(18);
             rStepsMainHeader.addBreak();
@@ -193,12 +187,12 @@ public class ReportBuilderWord implements ReportBuilder {
                 logger.info(rs.toString());
 
                 if (rs.getReportStepType() == ReportStepType.ERROR) {
-                    rStepsHeader.setText("HATA : " + rs.getStepHeader());
+                    rStepsHeader.setText("ERROR : " + rs.getStepHeader());
                     rStepsHeader.setBold(true);
                     rStepsHeader.addCarriageReturn();
                     rStepsHeader.setColor(ReportColor.RED.getValue());
                 } else if (rs.getReportStepType() == ReportStepType.WARN) {
-                    rStepsHeader.setText("UYARI : " + rs.getStepHeader());
+                    rStepsHeader.setText("WARNING : " + rs.getStepHeader());
                     rStepsHeader.setBold(true);
                     rStepsHeader.addCarriageReturn();
                     rStepsHeader.setColor(ReportColor.YELLOW.getValue());
@@ -210,7 +204,7 @@ public class ReportBuilderWord implements ReportBuilder {
 
                 XWPFRun rSteps = steps.createRun();
 
-                rSteps.setText("İşleme Zamanı : " + DateUtil.formatDateWithTime(rs.getTime()));
+                rSteps.setText("Action Time : " + DateUtil.formatDateWithTime(rs.getTime()));
                 rSteps.setBold(false);
                 rSteps.addCarriageReturn();
 
@@ -241,7 +235,7 @@ public class ReportBuilderWord implements ReportBuilder {
                         rSteps.addPicture(fis, Document.PICTURE_TYPE_PNG, screenShot.getName(), Units.toEMU(450),
                                 Units.toEMU(500));
                     } else {
-                        rSteps.setText("HATA : DOSYA BULUNAMADI " + rs.getScreenShot());
+                        rSteps.setText("ERROR : FILE OR FOLDER DO NOT EXIST " + rs.getScreenShot());
                     }
                     rSteps.addCarriageReturn();
                 }
@@ -250,6 +244,11 @@ public class ReportBuilderWord implements ReportBuilder {
             }
             // USED PARAMETERS [END]
 
+            File file = new java.io.File(path);
+            file.getParentFile().mkdirs(); // correct!
+            if (!file.exists()) {
+                file.createNewFile();
+            }
             out = new FileOutputStream(path);
             doc.write(out);
 

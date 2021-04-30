@@ -1,15 +1,12 @@
-/**
- *
- */
-package tr.com.turkcell.sahi.core.report;
+package core.report;
 
-import tr.com.turkcell.sahi.core.enums.ReportStepType;
-import tr.com.turkcell.sahi.core.report.model.Report;
-import tr.com.turkcell.sahi.core.report.model.ReportHeader;
-import tr.com.turkcell.sahi.core.report.model.ReportStep;
+import core.report.model.Report;
+import core.report.model.ReportHeader;
+import core.report.model.ReportStep;
+import util.ReportStepType;
 
 /**
- * @author Onur Erdogan
+ * @author Furkan Birgul
  */
 public interface ReportBuilder {
 

@@ -1,7 +1,4 @@
-/**
- *
- */
-package tr.com.turkcell.sahi.util;
+package util;
 
 /**
  * @author Furkan Birgul
@@ -17,16 +14,13 @@ public class PasswordUtil {
 
     /**
      * Converts password part of Step object to string as Masking format
-     *
-     * @param step
-     * @return newStep as String like "_sahi._setValue(_sahi._password(0), \"Yesil741\")"
      */
-    public static String sahiPasswordMasking(String step) {
+    public static String passwordMasking(String step) {
 
         String newStep = "";
         boolean replacePassword = false;
 
-        if (step.contains("_sahi._setValue(_sahi._password")) {
+        if (step.contains("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")) {
 
             for (int i = 0; i < step.length(); i++) {
 
