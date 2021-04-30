@@ -1,7 +1,6 @@
 package scenarios;
 
 import core.BaseTest;
-import core.EmailSender;
 import core.ScreenShot;
 import core.SeleniumUtil;
 import core.environment.EnvironmentUtil;
@@ -15,6 +14,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import util.DateUtil;
+import util.ReportStepType;
 
 import java.util.Date;
 
@@ -54,39 +54,41 @@ public class LoginTest extends BaseTest {
             }
             webDriver.findElement(By.xpath(submitButtonXPath)).click();
 
-            if (SeleniumUtil.existsElementByXpath(orderTagXPath, webDriver)) {
-                LOGGER.info("Login Successful");
-                this.testCustomResult = "LOGIN SUCCESSFUL" + System.lineSeparator();
-            } else if (SeleniumUtil.existsElementByXpath(passwordValidationMessageXPath, webDriver)) {
-                String message = webDriver.findElement(By.xpath(passwordValidationMessageXPath)).getText();
-                LOGGER.info(message);
+            if (!SeleniumUtil.existsElementByXpath(orderTagXPath, webDriver)) {
+                String message = webDriver.findElement(By.xpath(passwordValidationMessageXPath)).getText();LOGGER.info(message);
                 TestResult.setTestResult(TestStatus.FAIL);
                 this.testCustomResult = message + System.lineSeparator();
+            } else {
+                LOGGER.info("Login Successful");
+                this.testCustomResult = "LOGIN SUCCESSFUL" + System.lineSeparator();
             }
-            else{
-                LOGGER.info("username password might not be correct");
-                TestResult.setTestResult(TestStatus.FAIL);
-                this.testCustomResult = "USERNAME PASSWORD MIGHT NOT BE CORRECT" + System.lineSeparator();
-
-            }
+            LOGGER.info(testCustomResult);
 
         } catch (Exception e) {
 
-            LOGGER.error(e.getCause() + "-------------" + e.getMessage());
+            LOGGER.error(e.getCause() + "------------- LOGIN TEST TRY-CATCH" + e.getMessage());
             TestResult.setTestResult(TestStatus.FAIL);
             this.testCustomResult = e.getMessage();
-            LOGGER.error(e.getCause() + "-------------" + e.getMessage());
+            LOGGER.info(testCustomResult);
+            LOGGER.error(e.getCause() + "------------- LOGIN TEST TRY-CATCH" + e.getMessage());
+            throw e;
 
         } finally {
             LOGGER.info("Login test is finalizing " + DateUtil.formatDateWithTime(new Date(System.currentTimeMillis())));
+            LOGGER.error("------------- LOGIN TEST FINALLY");
             try {
-                this.contentBuilder.setUpResultParameters();
-                listOfScreenShotFiles = ScreenShot.takeSnapShot(webDriver);
-                EmailSender.sendEmail(TestResult.getTestResult(), contentBuilder.getHTMLContent(this.testCustomResult), listOfScreenShotFiles);
+                ScreenShot.takeSnapShotAndAddToReportStep(webDriver,this.testID,
+                        "Test Has Been Completed",
+                        "Boutique Rugs Quality Assurance Test",
+                        ReportStepType.INFO,
+                        reportBuilder);
+
+                reportBuilder.buildReport(this.testID, getReportFilePathWithTestId );
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
 
+        }
     }
 }
