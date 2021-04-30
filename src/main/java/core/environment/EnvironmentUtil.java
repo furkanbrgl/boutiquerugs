@@ -84,18 +84,6 @@ public class EnvironmentUtil {
         this.isEnvironmentProd();
         return System.getProperty("boutique.rugs.user.password");
     }
-    // Recipient's email ID needs to be mentioned.
-    public String getTestResultEmailAddress() {
-        return System.getProperty("test.result.email.address");
-    }
-    // Sender's email ID needs to be mentioned and Email address for Login
-    public String getFromEmailAddress() {
-        return System.getProperty("from.email.address");
-    }
-    // Email password for Login
-    public String getEmailUserPassword() {
-        return System.getProperty("email.user.password");
-    }
 
     private boolean isEnvironmentProd(){
         if(System.getProperty("env") != null) {
