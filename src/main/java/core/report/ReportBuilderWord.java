@@ -1,6 +1,3 @@
-/**
- *
- */
 package core.report;
 
 import core.report.model.Report;
@@ -99,7 +96,7 @@ public class ReportBuilderWord implements ReportBuilder {
             rHeaderDetails.addBreak();
 
             /**
-             * TODO: username, used paramaters, and Env info will be added to report.
+             * TODO: username, used paramaters, and Env info will be added to report. 05/01/2021
              */
             //will be fixed
             rHeaderDetails
