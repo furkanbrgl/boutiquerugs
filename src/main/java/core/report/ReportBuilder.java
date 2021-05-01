@@ -21,10 +21,6 @@ public interface ReportBuilder {
      */
     public void addStep(ReportStep step);
 
-    /**
-     * @param step
-     * @param reportStepType
-     */
     public void addStep(ReportStep step, ReportStepType reportStepType);
 
     /**
