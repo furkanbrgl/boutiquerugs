@@ -24,10 +24,7 @@ public class Reporter implements ReportBuilder {
         reportBuilder.addStep(step);
     }
 
-    /**
-     * @param step
-     * @param reportStepType
-     */
+
     @Override
     public void addStep(ReportStep step, ReportStepType reportStepType) {
         reportBuilder.addStep(step, reportStepType);
