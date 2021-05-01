@@ -1,6 +1,3 @@
-/**
- * 
- */
 package core.report.model;
 
 import core.environment.Environment;
@@ -134,10 +131,7 @@ public class ReportHeader {
 		return usedParameters;
 	}
 
-	/**
-	 * @param usedParameters
-	 *            the usedParameters to set
-	 */
+	
 	public void setUsedParameters(Map<String, String> usedParameters) {
 		this.usedParameters = usedParameters;
 	}
