@@ -33,12 +33,7 @@ public class Report {
 		this.testId = testId;
 	}
 
-	/**
-	 * @param testId
-	 * @param startTime
-	 * @param reportHeader
-	 * @param reportSteps
-	 */
+
 	public Report(String testId, Date startTime, ReportHeader reportHeader, List<ReportStep> reportSteps) {
 		super();
 		this.testId = testId;
