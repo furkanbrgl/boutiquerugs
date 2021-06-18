@@ -1,1 +1,1 @@
-###### mvn -B -Dtest=LoginTest -Dboutique.rugs.user.email=brgl.furkan@gmail.com -Dboutique.rugs.user.password=Asd123! -Dchrome.driver=webdriver.chrome.driver -Dtest.result.email.address=brgl.furkan@gmail.com -Denv=PROD test
+###### mvn -B -Dtest=LoginTest -Dboutique.rugs.user.email=brgl.furkan@gmail.com -Dboutique.rugs.user.password=Asd123! -Dchrome.driver=webdriver.chrome.driver -Dtest.result.email.address=brgl.furkan@gmail.com -Dtest.id=dummyId -Dtest.id=0000000 -Denv=PROD test

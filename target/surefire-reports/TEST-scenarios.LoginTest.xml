@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="scenarios.LoginTest" time="41.51" tests="1" errors="1" skipped="0" failures="0">
+<testsuite name="scenarios.LoginTest" time="31.278" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="15.0.1+9-18"/>
@@ -44,10 +44,9 @@
     <property name="java.specification.version" value="15"/>
     <property name="user.name" value="brglf"/>
     <property name="java.class.path" value="C:\Users\brglf\OneDrive\Documents\apache-maven-3.8.1\bin\..\boot\plexus-classworlds-2.6.0.jar"/>
-    <property name="testid" value="1619719203914"/>
     <property name="java.vm.specification.version" value="15"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B -Dtest=LoginTest -Dtestid=1619719203914 test -Dchrome.driver=webdriver.chrome.driver -Dtest.result.email.address=brgl.furkan@gmail.com -Dboutique.rugs.user.password=Asd123! -Dboutique.rugs.user.email=brgl.furkan@gmail.com -Denv=PROD"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B -Dtest=LoginTest -Dboutique.rugs.user.email=brgl.furkan@gmail.com -Dboutique.rugs.user.password=Asd123! -Dchrome.driver=webdriver.chrome.driver -Dtest.result.email.address=brgl.furkan@gmail.com -Dtest.id=000 -Denv=PROD test"/>
     <property name="java.home" value="C:\Program Files\Java\jdk-15.0.1"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -56,76 +55,16 @@
     <property name="java.version" value="15.0.1"/>
     <property name="boutique.rugs.user.password" value="Asd123!"/>
     <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="sun.stderr.encoding" value="cp437"/>
     <property name="maven.home" value="C:\Users\brglf\OneDrive\Documents\apache-maven-3.8.1\bin\.."/>
     <property name="file.separator" value="\"/>
     <property name="java.version.date" value="2020-10-20"/>
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.endian" value="little"/>
+    <property name="test.id" value="000"/>
+    <property name="sun.stdout.encoding" value="cp437"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="LoginTest" classname="scenarios.LoginTest" time="41.51">
-    <error message="Expected condition failed: waiting for visibility of element located by By.id: login_email (tried for 20 second(s) with 500 milliseconds interval)" type="org.openqa.selenium.TimeoutException">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.id: login_email (tried for 20 second(s) with 500 milliseconds interval)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:64)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:372)
-	at org.openqa.selenium.By$ById.findElement(By.java:188)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
-	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
-	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
-	at scenarios.LoginTest.LoginTest(LoginTest.java:46)
-</error>
-    <system-out><![CDATA[0    [main] INFO  core.environment.EnvironmentUtil  - Enviroment is PROD !!
-0    [main] INFO  core.environment.EnvironmentUtil  - Environment properties loaded to System
-85   [main] INFO  core.BaseTest  - test is initializing... 04/29/2021 14:00:08
-85   [main] INFO  core.BaseTest  - System Properties was set... 
-2295 [main] INFO  core.BaseTest  - Chrome Driver was set as a web driver 
-2310 [main] INFO  core.BaseTest  - tolerable waiting time is 20 SECOND for Web Driver !
-2310 [main] INFO  core.BaseTest  - tolerable page load timeout is 60 SECOND for Web Driver !
-10719 [main] INFO  core.environment.EnvironmentUtil  - Enviroment is PROD !!
-10720 [main] INFO  scenarios.LoginTest  - Login test is starting
-13673 [main] INFO  scenarios.LoginTest  - Wait for items to be set up 1619719221649
-18685 [main] INFO  scenarios.LoginTest  - Waited for items to be set up 1619719226662
-38887 [main] ERROR scenarios.LoginTest  - org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"#login_email"}
-  (Session info: chrome=89.0.4389.128)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'LAPTOP-PB5O03D2', ip: '10.1.10.103', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 89.0.4389.128, chrome: {chromedriverVersion: 89.0.4389.23 (61b08ee2c5002..., userDataDir: C:\Users\brglf\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:58266}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: fb879f1fe06042b74b575e61fec11240
-*** Element info: {Using=id, value=login_email}-------------Expected condition failed: waiting for visibility of element located by By.id: login_email (tried for 20 second(s) with 500 milliseconds interval)
-38887 [main] ERROR scenarios.LoginTest  - org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"#login_email"}
-  (Session info: chrome=89.0.4389.128)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'LAPTOP-PB5O03D2', ip: '10.1.10.103', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 89.0.4389.128, chrome: {chromedriverVersion: 89.0.4389.23 (61b08ee2c5002..., userDataDir: C:\Users\brglf\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:58266}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: fb879f1fe06042b74b575e61fec11240
-*** Element info: {Using=id, value=login_email}-------------Expected condition failed: waiting for visibility of element located by By.id: login_email (tried for 20 second(s) with 500 milliseconds interval)
-38888 [main] INFO  scenarios.LoginTest  - Login test is finalizing 04/29/2021 14:00:46
-38890 [main] INFO  core.ScreenShot  - ScreenShot was taken
-40684 [main] INFO  core.EmailSender  - Email message was sent
-41414 [main] INFO  core.BaseTest  - test is ending... 04/29/2021 14:00:49
-]]></system-out>
-    <system-err><![CDATA[Starting ChromeDriver 89.0.4389.23 (61b08ee2c50024bab004e48d2b1b083cdbdac579-refs/branch-heads/4389@{#294}) on port 16430
-Only local connections are allowed.
-Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
-ChromeDriver was started successfully.
-Apr 29, 2021 2:00:10 PM org.openqa.selenium.remote.ProtocolHandshake createSession
-INFO: Detected dialect: W3C
-]]></system-err>
-  </testcase>
+  <testcase name="LoginTest" classname="scenarios.LoginTest" time="31.278"/>
 </testsuite>

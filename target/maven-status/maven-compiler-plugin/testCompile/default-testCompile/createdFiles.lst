@@ -1,5 +1,3 @@
-functional\SendEmailWithAttachments.class
 core\BaseTest.class
+functional\ReportTest.class
 scenarios\LoginTest.class
-functional\Dummy.class
-scenarios\TestTest.class

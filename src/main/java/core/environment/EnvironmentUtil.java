@@ -2,6 +2,9 @@ package core.environment;
 
 import org.apache.log4j.Logger;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -37,8 +40,13 @@ public class EnvironmentUtil {
         Properties properties = System.getProperties();
 
         try {
-            properties.load(getClass().getClassLoader().getResourceAsStream(propertyFile));
+            if(isEnvironmentProd()){
+                properties.load(new FileInputStream(System.getProperty("prod.config.path")));
+            } else{
+                properties.load(getClass().getClassLoader().getResourceAsStream(propertyFile));
+            }
             LOGGER.info("Environment properties loaded to System");
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -99,6 +107,5 @@ public class EnvironmentUtil {
             return false;
         }
     }
-
 
 }
