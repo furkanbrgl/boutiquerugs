@@ -51,7 +51,7 @@ public class ScreenShot{
             // use directory.mkdirs(); here instead.
         }
 
-        String screenShotFullPathWithName = directory.getPath() + "\\" + System.currentTimeMillis() + ".jpg";
+        String screenShotFullPathWithName = directory.getPath() + System.lineSeparator() + System.currentTimeMillis() + ".jpg";
 
         TakesScreenshot scrShot =((TakesScreenshot)webdriver);
         LOGGER.info("ScreenShot was taken");
