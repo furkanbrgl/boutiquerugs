@@ -32,7 +32,7 @@ public class ScreenShot{
         File srcFile=scrShot.getScreenshotAs(OutputType.FILE);
         File DestFile=new File(screenShotsFilePath);
 
-        FileUtils.copyFile(srcFile, new File(DestFile + "\\" +name + ".png"));
+        FileUtils.copyFile(srcFile, new File(DestFile + System.lineSeparator() +name + ".png"));
         return ;
     }
 
@@ -44,7 +44,7 @@ public class ScreenShot{
                                           ReportBuilder reportBuilder) throws Exception{
 
 
-        File directory = new File(screenShotsFilePath + "\\" + testId);
+        File directory = new File(screenShotsFilePath + System.lineSeparator() + testId);
         if (! directory.exists()){
             directory.mkdir();
             // If you require it to make the entire directory path including parents,
