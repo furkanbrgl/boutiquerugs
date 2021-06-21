@@ -32,7 +32,7 @@ public class ScreenShot{
         File srcFile=scrShot.getScreenshotAs(OutputType.FILE);
         File DestFile=new File(screenShotsFilePath);
 
-        FileUtils.copyFile(srcFile, new File(DestFile + System.lineSeparator() +name + ".png"));
+        FileUtils.copyFile(srcFile, new File(DestFile + File.separator +name + ".png"));
         return ;
     }
 
@@ -44,14 +44,14 @@ public class ScreenShot{
                                           ReportBuilder reportBuilder) throws Exception{
 
 
-        File directory = new File(screenShotsFilePath + System.lineSeparator() + testId);
+        File directory = new File(screenShotsFilePath + File.separator + testId);
         if (! directory.exists()){
             directory.mkdir();
             // If you require it to make the entire directory path including parents,
             // use directory.mkdirs(); here instead.
         }
 
-        String screenShotFullPathWithName = directory.getPath() + System.lineSeparator() + System.currentTimeMillis() + ".jpg";
+        String screenShotFullPathWithName = directory.getPath() + File.separator + System.currentTimeMillis() + ".jpg";
 
         TakesScreenshot scrShot =((TakesScreenshot)webdriver);
         LOGGER.info("ScreenShot was taken");

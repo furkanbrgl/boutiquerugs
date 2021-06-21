@@ -42,11 +42,11 @@ public class BaseTest {
 
         try {
 
-            File directory = new File(getReportFilePathWithTestId + System.lineSeparator() + testID);
+            File directory = new File(getReportFilePathWithTestId + File.separator + testID);
             if (! directory.exists()){
                 directory.mkdir();
             }
-            this.getReportFilePathWithTestId = directory.getPath() + System.lineSeparator() + testID + ".docx";
+            this.getReportFilePathWithTestId = directory.getPath() + File.separator + testID + ".docx";
 
 
             //mapping will be later
