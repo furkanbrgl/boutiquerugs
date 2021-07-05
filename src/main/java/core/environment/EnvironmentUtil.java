@@ -60,7 +60,7 @@ public class EnvironmentUtil {
 
 
     public String getChromeDriver() {
-        return System.getProperty("chrome.driver");
+        return System.getProperty("chromeDriver");
     }
 
     public String getChromeDriverPath() {
@@ -85,12 +85,12 @@ public class EnvironmentUtil {
     }
 
     public String getBrEmail() {
-        return System.getProperty("boutique.rugs.user.email");
+        return System.getProperty("boutiqueRugsUserEmail");
     }
 
     public String getBrPassword() {
         this.isEnvironmentProd();
-        return System.getProperty("boutique.rugs.user.password");
+        return System.getProperty("boutiqueRugsUserPassword");
     }
 
     private boolean isEnvironmentProd(){

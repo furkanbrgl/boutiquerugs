@@ -26,8 +26,9 @@ public class LoginTest extends BaseTest {
         String brEmail = EnvironmentUtil.getInstance().getBrEmail();
         String brPassword = EnvironmentUtil.getInstance().getBrPassword();
         String orderTagXPath = "/html/body/div[3]/div[1]/h1";
-        String passwordValidationMessageXPath = "/html/body/div[3]/div[1]/div/div[1]/p/span";
-        String submitButtonXPath = "/html/body/div[3]/div[1]/div/div/form/div[3]/input";
+        String loginValidationMessageXPath = "//*[@id=\"main\"]/header/div/h1";
+        String submitButtonXPath = "//*[@id=\"customer_login\"]/button";
+
 
         try {
 
@@ -35,15 +36,16 @@ public class LoginTest extends BaseTest {
             WebDriverWait wait = new WebDriverWait(webDriver, 20);
 
             JavascriptExecutor javascript = (JavascriptExecutor) this.webDriver;
-            javascript.executeScript("document.getElementsByClassName(\"account-icon\")[0].click()");
+            javascript.executeScript("document.getElementsByClassName(\"Icon Icon--account\")[0].dispatchEvent(new MouseEvent('click', {view: window, bubbles:true, cancelable: true}))");
+
 
             LOGGER.info("Wait for items to be set up " + System.currentTimeMillis());
             SeleniumUtil.sleep(5000);
             LOGGER.info("Waited for items to be set up " + System.currentTimeMillis());
 
-            WebElement emailElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("login_email")));
+            WebElement emailElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("customer[email]")));
             emailElement.sendKeys(brEmail);
-            WebElement passwordElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("login_pass")));
+            WebElement passwordElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("customer[password]")));
             passwordElement.sendKeys(brPassword);
 
 
@@ -53,7 +55,8 @@ public class LoginTest extends BaseTest {
             webDriver.findElement(By.xpath(submitButtonXPath)).click();
 
             if (!SeleniumUtil.existsElementByXpath(orderTagXPath, webDriver)) {
-                String message = webDriver.findElement(By.xpath(passwordValidationMessageXPath)).getText();LOGGER.info(message);
+                String message = webDriver.findElement(By.xpath(loginValidationMessageXPath)).getText();
+                LOGGER.info(message);
             } else {
                 LOGGER.info("Login Successful");
                 ScreenShot.takeSnapShotAndAddToReportStep(webDriver,this.testID,
