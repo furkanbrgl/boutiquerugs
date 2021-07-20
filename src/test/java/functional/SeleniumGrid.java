@@ -1,17 +1,20 @@
+package functional;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.MalformedURLException;
 import java.net.URL;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.Assert;
-import org.testng.annotations.*;
 
 public class SeleniumGrid {
 
     WebDriver driver;
     String baseURL, nodeURL;
 
-    @BeforeTest
+    @Before
     public void setUp() throws MalformedURLException {
         baseURL = "https://boutiquerugs.com/";
         nodeURL = "http://192.168.86.33:4444/wd/hub";
@@ -29,7 +32,7 @@ public class SeleniumGrid {
     }
 
 
-    @AfterTest
+    @After
     public void afterTest() {
         driver.quit();
     }
