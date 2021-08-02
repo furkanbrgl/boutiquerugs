@@ -53,14 +53,20 @@ public class EnvironmentUtil {
     }
 
 
-
     public String getResourceBaseURL() {
         return System.getProperty("resource.base.url");
     }
 
-
     public String getChromeDriver() {
         return System.getProperty("chromeDriver");
+    }
+
+    public String getNodeIp() {
+        return System.getProperty("serverip");
+    }
+
+    public String getNodeTagName() {
+        return System.getProperty("nodeTag");
     }
 
     public String getChromeDriverPath() {

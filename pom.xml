@@ -16,6 +16,8 @@
         <test.result.email.address>TEST RESULT EMAIL ADDRESS POM</test.result.email.address>
         <test.id>dummyTestID</test.id>
         <test>dummyTestName</test>
+        <serverip>dummyServerIp</serverip>
+        <nodeTag>dummyNodeTag</nodeTag>
         <env>DEV</env>
         <prod.config.path>${basedir}\src\main\resources\prod.environment.properties</prod.config.path>
     </properties>
