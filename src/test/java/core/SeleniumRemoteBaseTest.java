@@ -76,7 +76,7 @@ public class SeleniumRemoteBaseTest {
             capability.setPlatform(Platform.WINDOWS);
             capability.setCapability("nodeTag", nodeTag);
 
-            webDriver = new RemoteWebDriver(new URL(url), capability);
+            webDriver = new RemoteWebDriver(new URL("http://192.168.86.33:4444/wd/hub"), capability);
             webDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS).pageLoadTimeout(60, TimeUnit.SECONDS);
             LOGGER.info("tolerable waiting time is 20 SECOND for Web Driver !");
             LOGGER.info("tolerable page load timeout is 60 SECOND for Web Driver !");
