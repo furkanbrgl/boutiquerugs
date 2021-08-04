@@ -2,15 +2,10 @@ package scenarios;
 
 import core.BaseTest;
 import core.ScreenShot;
-import core.SeleniumUtil;
 import core.environment.EnvironmentUtil;
 import org.apache.log4j.Logger;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.MainPage;
 import util.DateUtil;
 import util.ReportStepType;
 
@@ -25,49 +20,14 @@ public class LoginTest extends BaseTest {
 
         String brEmail = EnvironmentUtil.getInstance().getBrEmail();
         String brPassword = EnvironmentUtil.getInstance().getBrPassword();
-        String orderTagXPath = "/html/body/div[3]/div[1]/h1";
-        String loginValidationMessageXPath = "//*[@id=\"main\"]/header/div/h1";
-        String submitButtonXPath = "//*[@id=\"customer_login\"]/button";
-
 
         try {
 
             LOGGER.info("Login test is starting");
-            WebDriverWait wait = new WebDriverWait(webDriver, 20);
+            mainPage.callLoginPage().loginBoutiqueRugs(brEmail,brPassword);
 
-            JavascriptExecutor javascript = (JavascriptExecutor) this.webDriver;
-            javascript.executeScript("document.getElementsByClassName(\"Icon Icon--account\")[0].dispatchEvent(new MouseEvent('click', {view: window, bubbles:true, cancelable: true}))");
-
-
-            LOGGER.info("Wait for items to be set up " + System.currentTimeMillis());
-            SeleniumUtil.sleep(5000);
-            LOGGER.info("Waited for items to be set up " + System.currentTimeMillis());
-
-            WebElement emailElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("customer[email]")));
-            emailElement.sendKeys(brEmail);
-            WebElement passwordElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("customer[password]")));
-            passwordElement.sendKeys(brPassword);
-
-
-            if (!SeleniumUtil.existsElementByXpath(submitButtonXPath, webDriver)) {
-                SeleniumUtil.sleep(4000);
-            }
-            webDriver.findElement(By.xpath(submitButtonXPath)).click();
-
-            if (!SeleniumUtil.existsElementByXpath(orderTagXPath, webDriver)) {
-                String message = webDriver.findElement(By.xpath(loginValidationMessageXPath)).getText();
-                LOGGER.info(message);
-            } else {
-                LOGGER.info("Login Successful");
-                ScreenShot.takeSnapShotAndAddToReportStep(webDriver,this.testID,
-                        "LOGIN SUCCESSFUL",
-                        "Test Has Been Completed",
-                        ReportStepType.SUCCESS,
-                        reportBuilder);
-            }
-
-        } catch (Exception e) {
-
+        }
+        catch (Exception e) {
             LOGGER.error(e.getCause() + "------------- LOGIN TEST TRY-CATCH" + e.getMessage());
             ScreenShot.takeSnapShotAndAddToReportStep(webDriver,this.testID,
                     "Boutique Rugs Quality Assurance Test",
@@ -75,9 +35,7 @@ public class LoginTest extends BaseTest {
                     ReportStepType.ERROR,
                     reportBuilder);
             LOGGER.error(e.getCause() + "------------- LOGIN TEST TRY-CATCH" + e.getMessage());
-
             throw e;
-
         } finally {
             LOGGER.info("Login test is finalizing " + DateUtil.formatDateWithTime(new Date(System.currentTimeMillis())));
             try {

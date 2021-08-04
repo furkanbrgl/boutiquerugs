@@ -11,6 +11,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.MainPage;
 import util.DateUtil;
 import util.ReportStepType;
 
@@ -28,6 +29,8 @@ public class BaseTest {
     public ReportBuilder reportBuilder = new ReportBuilderWord();
     public String testID = EnvironmentUtil.getInstance().getTestId();
     public String getReportFilePathWithTestId = EnvironmentUtil.getInstance().getReportFilePath();
+
+    public MainPage mainPage = null;
 
 
     private String url = EnvironmentUtil.getInstance().getResourceBaseURL();
@@ -71,6 +74,8 @@ public class BaseTest {
 
             webDriver.get(url);
 
+            this.initiateMainPage();
+
             ScreenShot.takeSnapShotAndAddToReportStep(webDriver,testID,
                     "Test Has Been Started",
                     "Boutique Rugs Quality Assurance Test",
@@ -106,6 +111,13 @@ public class BaseTest {
 
         webDriver.quit();
         LOGGER.info("test is ending... " + DateUtil.formatDateWithTime(new Date(System.currentTimeMillis())));
+    }
+
+    private void initiateMainPage() {
+
+        mainPage = new MainPage(webDriver);
+        mainPage.testID = testID;
+        mainPage.reportBuilder = reportBuilder;
     }
 
 }
