@@ -24,7 +24,7 @@ public class LoginTest extends BaseTest {
         try {
 
             LOGGER.info("Login test is starting");
-            mainPage.callLoginPage().loginBoutiqueRugs(brEmail,brPassword);
+            new MainPage(webDriver, testID, reportBuilder).callLoginPage().loginBoutiqueRugs(brEmail,brPassword);
 
         }
         catch (Exception e) {

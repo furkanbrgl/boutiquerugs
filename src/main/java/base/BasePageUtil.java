@@ -37,8 +37,10 @@ public class BasePageUtil {
     public static final int DEFAULT_WAIT = 30;
     public static final int MAX_WAIT = 120;
 
-    public BasePageUtil(WebDriver driver) {
+    public BasePageUtil(WebDriver driver, String testID , ReportBuilder reportBuilder) {
         this.driver = driver;
+        this.testID = testID;
+        this.reportBuilder = reportBuilder;
     }
 
     /**

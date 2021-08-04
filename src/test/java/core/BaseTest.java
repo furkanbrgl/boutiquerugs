@@ -30,9 +30,6 @@ public class BaseTest {
     public String testID = EnvironmentUtil.getInstance().getTestId();
     public String getReportFilePathWithTestId = EnvironmentUtil.getInstance().getReportFilePath();
 
-    public MainPage mainPage = null;
-
-
     private String url = EnvironmentUtil.getInstance().getResourceBaseURL();
     private String driverType = EnvironmentUtil.getInstance().getChromeDriver();
     private String driverPath = EnvironmentUtil.getInstance().getChromeDriverPath();
@@ -69,12 +66,12 @@ public class BaseTest {
             LOGGER.info("Chrome Driver was set as a web driver ");
 
             webDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS).pageLoadTimeout(60, TimeUnit.SECONDS);
+            webDriver.manage().window().maximize();
+
             LOGGER.info("tolerable waiting time is 20 SECOND for Web Driver !");
             LOGGER.info("tolerable page load timeout is 60 SECOND for Web Driver !");
 
             webDriver.get(url);
-
-            this.initiateMainPage();
 
             ScreenShot.takeSnapShotAndAddToReportStep(webDriver,testID,
                     "Test Has Been Started",
@@ -113,11 +110,13 @@ public class BaseTest {
         LOGGER.info("test is ending... " + DateUtil.formatDateWithTime(new Date(System.currentTimeMillis())));
     }
 
+    /**
     private void initiateMainPage() {
 
         mainPage = new MainPage(webDriver);
         mainPage.testID = testID;
         mainPage.reportBuilder = reportBuilder;
     }
+     */
 
 }
