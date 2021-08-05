@@ -13,6 +13,8 @@ pages\MainPage.class
 util\WaitTool$6.class
 base\BasePage.class
 util\WaitTool$12.class
+base\BaseTestT.class
+util\Listener.class
 util\WaitTool$3.class
 util\WaitTool$8.class
 core\environment\EnvironmentUtil.class
@@ -24,7 +26,6 @@ core\report\ReportBuilder.class
 core\report\model\Report.class
 util\PasswordUtil.class
 util\ReportColor.class
-core\SeleniumUtil.class
 util\WaitTool$1.class
 util\WaitTool$11.class
 core\ScreenShot.class
