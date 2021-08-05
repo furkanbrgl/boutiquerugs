@@ -21,13 +21,11 @@ public class LoginPage extends BasePage implements LoginPageConstants {
 
     public MainPage loginBoutiqueRugs(String brEmail, String brPassword) throws Exception {
 
-        LOGGER.info(this.testID);
-        LOGGER.info(this.reportBuilder);
         ScreenShot.takeSnapShotAndAddToReportStep(driver,this.testID,
                 "Login PAGE !!!",
                 "Boutique Rugs Quality Assurance Test",
                 ReportStepType.INFO,
-                this.reportBuilder);
+                reportBuilder);
 
 
         if(untilElementAppearBy(By.name(emailByName))){

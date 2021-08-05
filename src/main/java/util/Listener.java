@@ -20,14 +20,14 @@ public class Listener extends BaseTestT implements ITestListener {
         try {
             ScreenShot.takeSnapShotAndAddToReportStep(webDriver,this.testID,
                     "Boutique Rugs Quality Assurance Test",
-                    "Test Has Been Completed -- : RESULT : " + testResult.toString() + " ::::::::::: ",
+                    "Test Has Been Completed",
                     ReportStepType.SUCCESS,
-                    reportBuilder);
+                    testReportBuilder);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        reportBuilder.buildReport(this.testID, getReportFilePathWithTestId );
+        testReportBuilder.buildReport(this.testID, getReportFilePathWithTestId );
 
     }
 
@@ -36,14 +36,14 @@ public class Listener extends BaseTestT implements ITestListener {
         try {
             ScreenShot.takeSnapShotAndAddToReportStep(webDriver,this.testID,
                     "Boutique Rugs Quality Assurance Test",
-                    "Test Has Been Completed -- : RESULT : " + testResult.toString() + " ::::::::::: ",
+                    "Test Has Been Completed",
                     ReportStepType.ERROR,
-                    reportBuilder);
+                    testReportBuilder);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        reportBuilder.buildReport(this.testID, getReportFilePathWithTestId );
+        testReportBuilder.buildReport(this.testID, getReportFilePathWithTestId );
 
     }
 

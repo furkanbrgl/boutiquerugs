@@ -20,7 +20,7 @@ public class LoginTest extends BaseTestT {
 
 
         LOGGER.info("Login test is starting");
-        new MainPage(webDriver, testID, reportBuilder).callLoginPage().loginBoutiqueRugs(brEmail,brPassword);
+        new MainPage(webDriver, testID, testReportBuilder).callLoginPage().loginBoutiqueRugs(brEmail,brPassword);
 
     }
 }

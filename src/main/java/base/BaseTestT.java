@@ -24,8 +24,9 @@ public class BaseTestT {
 
     final Logger LOGGER = Logger.getLogger(BaseTestT.class);
 
-    public WebDriver webDriver = null;
-    public ReportBuilder reportBuilder = new ReportBuilderWord();
+    protected static WebDriver webDriver;
+    public static ReportBuilder testReportBuilder = new ReportBuilderWord();
+
     public String testID = EnvironmentUtil.getInstance().getTestId();
     public String getReportFilePath = EnvironmentUtil.getInstance().getReportFilePath();
     public String getReportFilePathWithTestId = getReportFilePath + File.separator + testID + File.separator + testID + ".docx";
@@ -51,7 +52,7 @@ public class BaseTestT {
                     new Date(), new Date() ,
                     Environment.PROD,
                     new HashMap<String, String>());
-            reportBuilder.addHeader(reportHeader);
+            testReportBuilder.addHeader(reportHeader);
 
             LOGGER.info("test is initializing... " + DateUtil.formatDateWithTime(new Date(System.currentTimeMillis())));
 
@@ -73,7 +74,7 @@ public class BaseTestT {
                     "Test Has Been Started",
                     "Boutique Rugs Quality Assurance Test",
                     ReportStepType.INFO,
-                    reportBuilder);
+                    testReportBuilder);
 
     }
 
