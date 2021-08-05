@@ -1,8 +1,10 @@
 C:\Users\brglf\IdeaProjects\boutiquerugs-qa\src\main\java\base\BasePageUtil.java
+C:\Users\brglf\IdeaProjects\boutiquerugs-qa\src\main\java\util\Listener.java
 C:\Users\brglf\IdeaProjects\boutiquerugs-qa\src\main\java\core\report\ReportBuilder.java
 C:\Users\brglf\IdeaProjects\boutiquerugs-qa\src\main\java\core\environment\Environment.java
 C:\Users\brglf\IdeaProjects\boutiquerugs-qa\src\main\java\pages\LoginPage.java
 C:\Users\brglf\IdeaProjects\boutiquerugs-qa\src\main\java\util\WaitTool.java
+C:\Users\brglf\IdeaProjects\boutiquerugs-qa\src\main\java\base\BaseTestT.java
 C:\Users\brglf\IdeaProjects\boutiquerugs-qa\src\main\java\util\ReportColor.java
 C:\Users\brglf\IdeaProjects\boutiquerugs-qa\src\main\java\core\report\model\Report.java
 C:\Users\brglf\IdeaProjects\boutiquerugs-qa\src\main\java\core\report\Reporter.java
@@ -13,7 +15,6 @@ C:\Users\brglf\IdeaProjects\boutiquerugs-qa\src\main\java\util\PasswordUtil.java
 C:\Users\brglf\IdeaProjects\boutiquerugs-qa\src\main\java\core\environment\EnvironmentUtil.java
 C:\Users\brglf\IdeaProjects\boutiquerugs-qa\src\main\java\pages\MainPage.java
 C:\Users\brglf\IdeaProjects\boutiquerugs-qa\src\main\java\core\report\model\ReportHeader.java
-C:\Users\brglf\IdeaProjects\boutiquerugs-qa\src\main\java\core\SeleniumUtil.java
 C:\Users\brglf\IdeaProjects\boutiquerugs-qa\src\main\java\core\report\ReportBuilderWord.java
 C:\Users\brglf\IdeaProjects\boutiquerugs-qa\src\main\java\pages\constants\LoginPageConstants.java
 C:\Users\brglf\IdeaProjects\boutiquerugs-qa\src\main\java\util\ReportStepType.java

@@ -13,7 +13,6 @@ public class Listener extends BaseTestT implements ITestListener {
 
     public void onTestStart(ITestResult result) {
         // TODO Auto-generated method stub
-
     }
 
     public void onTestSuccess(ITestResult testResult) {

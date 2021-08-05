@@ -256,7 +256,7 @@ public class ReportBuilderWord implements ReportBuilder {
             if (!file.exists()) {
                 file.createNewFile();
             }
-            out = new FileOutputStream(path + "\\" + testId + ".docx");
+            out = new FileOutputStream(path);
             doc.write(out);
 
         } catch (FileNotFoundException e) {

@@ -27,7 +27,8 @@ public class BaseTestT {
     public WebDriver webDriver = null;
     public ReportBuilder reportBuilder = new ReportBuilderWord();
     public String testID = EnvironmentUtil.getInstance().getTestId();
-    public String getReportFilePathWithTestId = EnvironmentUtil.getInstance().getReportFilePath();
+    public String getReportFilePath = EnvironmentUtil.getInstance().getReportFilePath();
+    public String getReportFilePathWithTestId = getReportFilePath + File.separator + testID + File.separator + testID + ".docx";
 
     private String url = EnvironmentUtil.getInstance().getResourceBaseURL();
     private String driverType = EnvironmentUtil.getInstance().getChromeDriver();
@@ -39,12 +40,10 @@ public class BaseTestT {
     @BeforeTest
     public void setUp() throws Exception {
 
-            File directory = new File(getReportFilePathWithTestId + File.separator + testID);
+            File directory = new File(getReportFilePath + File.separator + testID);
             if (! directory.exists()){
                 directory.mkdir();
             }
-            this.getReportFilePathWithTestId = directory.getPath() + File.separator + testID + ".docx";
-
 
             //mapping will be later
             ReportHeader reportHeader = new ReportHeader(testID,
