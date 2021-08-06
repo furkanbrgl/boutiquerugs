@@ -1,6 +1,6 @@
 package scenarios;
 
-import base.BaseTestT;
+import base.BaseTest;
 import core.ScreenShot;
 import core.environment.EnvironmentUtil;
 import org.apache.log4j.Logger;
@@ -10,7 +10,7 @@ import pages.MainPage;
 import util.ReportStepType;
 
 @Listeners(util.Listener.class)
-public class LoginTest extends BaseTestT {
+public class LoginTest extends BaseTest {
 
     final Logger LOGGER = Logger.getLogger(LoginTest.class);
 

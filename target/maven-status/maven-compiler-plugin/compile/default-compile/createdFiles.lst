@@ -12,8 +12,8 @@ util\WaitTool$2.class
 pages\MainPage.class
 util\WaitTool$6.class
 base\BasePage.class
+base\BaseTest.class
 util\WaitTool$12.class
-base\BaseTestT.class
 util\Listener.class
 util\WaitTool$3.class
 util\WaitTool$8.class

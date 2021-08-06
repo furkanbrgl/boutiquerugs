@@ -2,9 +2,7 @@ package core.environment;
 
 import org.apache.log4j.Logger;
 
-import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -53,6 +51,7 @@ public class EnvironmentUtil {
     }
 
 
+    public String getHubIpAddress() { return System.getProperty("hubIpAddress");}
     public String getResourceBaseURL() {
         return System.getProperty("resource.base.url");
     }
@@ -113,5 +112,4 @@ public class EnvironmentUtil {
             return false;
         }
     }
-
 }

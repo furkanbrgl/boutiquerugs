@@ -1,15 +1,15 @@
 package util;
 
-import base.BaseTestT;
+import base.BaseTest;
 import core.ScreenShot;
 import org.apache.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-public class Listener extends BaseTestT implements ITestListener {
+public class Listener extends BaseTest implements ITestListener {
 
-    final Logger LOGGER = Logger.getLogger(BaseTestT.class);
+    final Logger LOGGER = Logger.getLogger(BaseTest.class);
 
     public void onTestStart(ITestResult result) {
         // TODO Auto-generated method stub
