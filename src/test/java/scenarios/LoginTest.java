@@ -1,21 +1,15 @@
 package scenarios;
 
-import core.BaseTest;
+import base.BaseTest;
 import core.ScreenShot;
-import core.SeleniumUtil;
 import core.environment.EnvironmentUtil;
 import org.apache.log4j.Logger;
-import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import util.DateUtil;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
+import pages.MainPage;
 import util.ReportStepType;
 
-import java.util.Date;
-
+@Listeners(util.Listener.class)
 public class LoginTest extends BaseTest {
 
     final Logger LOGGER = Logger.getLogger(LoginTest.class);
@@ -25,67 +19,17 @@ public class LoginTest extends BaseTest {
 
         String brEmail = EnvironmentUtil.getInstance().getBrEmail();
         String brPassword = EnvironmentUtil.getInstance().getBrPassword();
-        String orderTagXPath = "/html/body/div[3]/div[1]/h1";
-        String loginValidationMessageXPath = "//*[@id=\"main\"]/header/div/h1";
-        String submitButtonXPath = "//*[@id=\"customer_login\"]/button";
 
-
+        LOGGER.info("Login test is starting");
         try {
-
-            LOGGER.info("Login test is starting");
-            WebDriverWait wait = new WebDriverWait(webDriver, 20);
-
-            JavascriptExecutor javascript = (JavascriptExecutor) this.webDriver;
-            javascript.executeScript("document.getElementsByClassName(\"Icon Icon--account\")[0].dispatchEvent(new MouseEvent('click', {view: window, bubbles:true, cancelable: true}))");
-
-
-            LOGGER.info("Wait for items to be set up " + System.currentTimeMillis());
-            SeleniumUtil.sleep(5000);
-            LOGGER.info("Waited for items to be set up " + System.currentTimeMillis());
-
-            WebElement emailElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("customer[email]")));
-            emailElement.sendKeys(brEmail);
-            WebElement passwordElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("customer[password]")));
-            passwordElement.sendKeys(brPassword);
-
-
-            if (!SeleniumUtil.existsElementByXpath(submitButtonXPath, webDriver)) {
-                SeleniumUtil.sleep(4000);
-            }
-            webDriver.findElement(By.xpath(submitButtonXPath)).click();
-
-            if (!SeleniumUtil.existsElementByXpath(orderTagXPath, webDriver)) {
-                String message = webDriver.findElement(By.xpath(loginValidationMessageXPath)).getText();
-                LOGGER.info(message);
-            } else {
-                LOGGER.info("Login Successful");
-                ScreenShot.takeSnapShotAndAddToReportStep(webDriver,this.testID,
-                        "LOGIN SUCCESSFUL",
-                        "Test Has Been Completed",
-                        ReportStepType.SUCCESS,
-                        reportBuilder);
-            }
-
+            new MainPage(webDriver, testID, testReportBuilder).callLoginPage().loginBoutiqueRugs(brEmail,brPassword);
         } catch (Exception e) {
-
-            LOGGER.error(e.getCause() + "------------- LOGIN TEST TRY-CATCH" + e.getMessage());
             ScreenShot.takeSnapShotAndAddToReportStep(webDriver,this.testID,
                     "Boutique Rugs Quality Assurance Test",
-                    "Test Has Been Completed -- "  + e.getMessage(),
+                    "ERROR !! DETAIL :: " + e.getMessage()  ,
                     ReportStepType.ERROR,
-                    reportBuilder);
-            LOGGER.error(e.getCause() + "------------- LOGIN TEST TRY-CATCH" + e.getMessage());
-
+                    testReportBuilder);
             throw e;
-
-        } finally {
-            LOGGER.info("Login test is finalizing " + DateUtil.formatDateWithTime(new Date(System.currentTimeMillis())));
-            try {
-                reportBuilder.buildReport(this.testID, getReportFilePathWithTestId );
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
         }
     }
 }
