@@ -646,7 +646,7 @@ public class BasePageUtil {
     }
 
     /**
-     * Expects the element appears
+     * Expects the element appears default waiting time 30 secs
      */
     protected boolean untilElementAppearBy(By by) {
         try {

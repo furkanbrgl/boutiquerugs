@@ -21,21 +21,21 @@ public class LoginPage extends BasePage implements LoginPageConstants {
 
     public MainPage loginBoutiqueRugs(String brEmail, String brPassword) throws Exception {
 
-        ScreenShot.takeSnapShotAndAddToReportStep(driver,this.testID,
-                "Login PAGE !!!",
-                "Boutique Rugs Quality Assurance Test",
-                ReportStepType.INFO,
-                reportBuilder);
-
-
         if(untilElementAppearBy(By.name(emailByName))){
             setObjectBy(By.name(emailByName), brEmail);
             if(untilElementAppearBy(By.name(passwordByName))) {
                 setObjectBy(By.name(passwordByName), brPassword);
             }
         } else {
-            throw new IOException("Username or Password could not set");
+            throw new IOException("Username or Password Could Not Set");
         }
+
+        ScreenShot.takeSnapShotAndAddToReportStep(driver,this.testID,
+                "Login PAGE !!!",
+                "Boutique Rugs Quality Assurance Test",
+                ReportStepType.INFO,
+                reportBuilder);
+
         clickObjectByXpath(submitButtonXPath);
 
         waitForElement(5,By.xpath(loginValidationMessageXPath));
@@ -46,7 +46,6 @@ public class LoginPage extends BasePage implements LoginPageConstants {
                     "Boutique Rugs Quality Assurance Test",
                     ReportStepType.INFO,
                     reportBuilder);
-
         } else {
             throw new IOException("Login could not accomplished successfully");
         }
