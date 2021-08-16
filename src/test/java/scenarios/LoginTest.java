@@ -10,6 +10,7 @@ import pages.MainPage;
 import pages.constants.inputs.LoginPageInputs;
 import util.ReportStepType;
 
+import java.util.Date;
 import java.util.HashMap;
 
 @Listeners(util.Listener.class)
@@ -36,7 +37,9 @@ public class LoginTest extends BaseTest implements LoginPageInputs {
             throw e;
         }
         finally {
-            testReportBuilder.getHeader().setUsedParameters(this.setUsedTestParameters());
+
+            testReportBuilder.gatherReport(testID).getReportHeader().setUsedParameters(this.setUsedTestParameters());
+            testReportBuilder.gatherReport(testID).getReportHeader().setFinishTime(new Date());
         }
     }
 

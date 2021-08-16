@@ -20,11 +20,6 @@ public class Reporter implements ReportBuilder {
     }
 
     @Override
-    public ReportHeader getHeader() {
-        return reportBuilder.getHeader();
-    }
-
-    @Override
     public void addStep(ReportStep step) {
         reportBuilder.addStep(step);
     }

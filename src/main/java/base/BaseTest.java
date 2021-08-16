@@ -96,5 +96,4 @@ public class BaseTest {
         webDriver.quit();
         LOGGER.info("test is ending... " + DateUtil.formatDateWithTime(new Date(System.currentTimeMillis())));
     }
-
 }

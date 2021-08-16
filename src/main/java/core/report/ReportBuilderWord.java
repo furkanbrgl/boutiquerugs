@@ -14,8 +14,10 @@ import util.ReportStepType;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Furkan Birgul
@@ -35,11 +37,6 @@ public class ReportBuilderWord implements ReportBuilder {
     @Override
     public void addHeader(ReportHeader header) {
         reportHeaders.add(header);
-    }
-
-    @Override
-    public ReportHeader getHeader() {
-        return reportHeaders.get(0);
     }
 
     @Override
@@ -100,13 +97,17 @@ public class ReportBuilderWord implements ReportBuilder {
                     "Start Time: " + DateUtil.formatDateWithTime(report.getReportHeader().getStartTime()));
             rHeaderDetails.addBreak();
 
-            /**
-             * TODO: username, used paramaters, and Env info will be added to report. 05/01/2021
-             */
-            //will be fixed
             rHeaderDetails
                     .setText("Finish Time: " + DateUtil.formatDateWithTime(report.getReportHeader().getFinishTime()));
             rHeaderDetails.addBreak();
+
+            long f = report.getReportHeader().getFinishTime().getTime();
+            long s = report.getReportHeader().getStartTime().getTime();
+
+            rHeaderDetails
+                    .setText("Duration in Seconds: " + TimeUnit.SECONDS.convert(f-s,TimeUnit.MILLISECONDS));
+            rHeaderDetails.addBreak();
+
 
             //will be fixed
             if (report.getReportHeader().getUsedParameters().containsKey(testResultKey)) {
