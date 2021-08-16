@@ -1,4 +1,4 @@
 package pages.constants;
 
-public class MainPageConstants {
+public interface MainPageConstants {
 }

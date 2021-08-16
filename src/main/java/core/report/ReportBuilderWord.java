@@ -38,6 +38,11 @@ public class ReportBuilderWord implements ReportBuilder {
     }
 
     @Override
+    public ReportHeader getHeader() {
+        return reportHeaders.get(0);
+    }
+
+    @Override
     public void addStep(ReportStep step) {
         reportSteps.add(step);
 
@@ -88,11 +93,11 @@ public class ReportBuilderWord implements ReportBuilder {
 
             XWPFRun rHeaderDetails = headerDetails.createRun();
 
-            rHeaderDetails.setText("Test ID : " + report.getReportHeader().getTestId());
+            rHeaderDetails.setText("Test ID: " + report.getReportHeader().getTestId());
             rHeaderDetails.addBreak();
 
             rHeaderDetails.setText(
-                    "Start Time : " + DateUtil.formatDateWithTime(report.getReportHeader().getStartTime()));
+                    "Start Time: " + DateUtil.formatDateWithTime(report.getReportHeader().getStartTime()));
             rHeaderDetails.addBreak();
 
             /**
@@ -100,13 +105,13 @@ public class ReportBuilderWord implements ReportBuilder {
              */
             //will be fixed
             rHeaderDetails
-                    .setText("Finish Time : " + DateUtil.formatDateWithTime(report.getReportHeader().getFinishTime()));
+                    .setText("Finish Time: " + DateUtil.formatDateWithTime(report.getReportHeader().getFinishTime()));
             rHeaderDetails.addBreak();
 
             //will be fixed
             if (report.getReportHeader().getUsedParameters().containsKey(testResultKey)) {
                 String testStatus = report.getReportHeader().getUsedParameters().get(testResultKey);
-                rHeaderDetails.setText("Test Status : " + testStatus);
+                rHeaderDetails.setText("Test Status: " + testStatus);
                 report.getReportHeader().getUsedParameters().remove(testResultKey);
             }
 
@@ -135,12 +140,12 @@ public class ReportBuilderWord implements ReportBuilder {
             if (report.getReportHeader().getUsedParameters() != null) {
                 for (Map.Entry<String, String> entry : report.getReportHeader().getUsedParameters().entrySet()) {
 
-                    logger.info(entry.getKey() + "/" + entry.getValue());
+                    logger.info(entry.getKey() + "=" + entry.getValue());
 
                     if (PasswordUtil.isContainsPassword(entry.getKey())) {
-                        rUserParameters.setText(entry.getKey() + " / \"" + PasswordUtil.stringMasking(entry.getValue(), '*') + "\"");
+                        rUserParameters.setText(entry.getKey() + " = \"" + PasswordUtil.stringMasking(entry.getValue(), '*') + "\"");
                     } else {
-                        rUserParameters.setText(entry.getKey() + " / \"" + entry.getValue() + "\"");
+                        rUserParameters.setText(entry.getKey() + " = \"" + entry.getValue() + "\"");
                     }
 
                     rUserParameters.addBreak();

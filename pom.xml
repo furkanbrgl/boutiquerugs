@@ -12,12 +12,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <boutique.rugs.user.info>BOUTIQUE RUGS USER INFO POM</boutique.rugs.user.info>
-        <chrome.driver>webdriver.chrome.driver</chrome.driver>
         <test.result.email.address>TEST RESULT EMAIL ADDRESS POM</test.result.email.address>
-        <test.id>dummyTestID</test.id>
-        <test>dummyTestName</test>
-        <serverip>dummyServerIp</serverip>
-        <nodeTag>dummyNodeTag</nodeTag>
         <env>DEV</env>
         <prod.config.path>${basedir}\src\main\resources\prod.environment.properties</prod.config.path>
     </properties>

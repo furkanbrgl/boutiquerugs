@@ -7,10 +7,13 @@ import org.apache.log4j.Logger;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.MainPage;
+import pages.constants.inputs.LoginPageInputs;
 import util.ReportStepType;
 
+import java.util.HashMap;
+
 @Listeners(util.Listener.class)
-public class LoginTest extends BaseTest {
+public class LoginTest extends BaseTest implements LoginPageInputs {
 
     final Logger LOGGER = Logger.getLogger(LoginTest.class);
 
@@ -21,6 +24,7 @@ public class LoginTest extends BaseTest {
         String brPassword = EnvironmentUtil.getInstance().getBrPassword();
 
         LOGGER.info("Login test is starting");
+
         try {
             new MainPage(webDriver, testID, testReportBuilder).callLoginPage().loginBoutiqueRugs(brEmail,brPassword);
         } catch (Exception e) {
@@ -31,5 +35,19 @@ public class LoginTest extends BaseTest {
                     testReportBuilder);
             throw e;
         }
+        finally {
+            testReportBuilder.getHeader().setUsedParameters(this.setUsedTestParameters());
+        }
+    }
+
+    private HashMap<String, String> setUsedTestParameters() {
+        HashMap<String, String> map = new HashMap<>();
+        for (BaseOperation key : BaseOperation.values()) {
+            map.put(key.toString(), System.getProperty(key.name()));
+        }
+        for (LoginOperation key : LoginOperation.values()) {
+            map.put(key.toString(), System.getProperty(key.name()));
+        }
+        return map;
     }
 }

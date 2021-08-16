@@ -16,6 +16,8 @@ public interface ReportBuilder {
      */
     public void addHeader(ReportHeader header);
 
+    public ReportHeader getHeader();
+
     /**
      * @param step
      */
