@@ -28,6 +28,7 @@ public class Listener extends BaseTest implements ITestListener {
         }
 
         testReportBuilder.buildReport(this.testID, getReportFilePathWithTestId );
+        ScreenShot.deleteAllImages(this.testID, getReportFilePath);
 
     }
 
@@ -44,6 +45,7 @@ public class Listener extends BaseTest implements ITestListener {
         }
 
         testReportBuilder.buildReport(this.testID, getReportFilePathWithTestId );
+        ScreenShot.deleteAllImages(this.testID, getReportFilePath);
 
     }
 

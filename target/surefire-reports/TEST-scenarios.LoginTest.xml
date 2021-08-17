@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="scenarios.LoginTest" time="11.033" tests="1" errors="0" skipped="0" failures="0">
+<testsuite name="scenarios.LoginTest" time="20.175" tests="1" errors="0" skipped="0" failures="1">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="15.0.1+9-18"/>
@@ -50,7 +50,7 @@
     <property name="chromeDriver" value="webdriver.chrome.driver"/>
     <property name="java.vm.specification.version" value="15"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B -Dtest=LoginTest -Dtest.id=1629121929682 -Dserverip=192.168.86.27 -DnodeTag=node_2 -DhubIpAddress=http://192.168.86.33:4444/wd/hub test -DchromeDriver=webdriver.chrome.driver -DtestResultEmailAddress=brgl.furkan@gmail.com -DboutiqueRugsUserEmail=boutiquerugstest@gmail.com -DboutiqueRugsUserPassword=boutiquerugs123! -Denv=PROD"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B -Dtest=LoginTest -Dtest.id=1629929682 -Dserverip=192.168.86.27 -DnodeTag=node_2 -DhubIpAddress=http://192.168.86.33:4444/wd/hub test -DchromeDriver=webdriver.chrome.driver -DtestResultEmailAddress=brgl.furkan@gmail.com -DboutiqueRugsUserEmail=boutiquerugstest@gmail.com -DboutiqueRugsUserPassword=boutiquerugs123! -Denv=PROD"/>
     <property name="java.home" value="C:\Program Files\Java\jdk-15.0.1"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -65,9 +65,70 @@
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="test.id" value="1629121929682"/>
+    <property name="test.id" value="1629929682"/>
     <property name="sun.stdout.encoding" value="cp437"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="LoginTest" classname="scenarios.LoginTest" time="11.033"/>
+  <testcase name="LoginTest" classname="scenarios.LoginTest" time="20.175">
+    <failure message="Expected condition failed: waiting for presence of element located by: By.xpath: //*[@id=&quot;main&quot;]/header/div/h1 (tried for 5 second(s) with 1000 milliseconds interval)" type="org.openqa.selenium.TimeoutException">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.xpath: //*[@id="main"]/header/div/h1 (tried for 5 second(s) with 1000 milliseconds interval)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:182)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:179)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
+	at base.BasePageUtil.waitForElement(BasePageUtil.java:457)
+	at pages.LoginPage.loginBoutiqueRugs(LoginPage.java:41)
+	at scenarios.LoginTest.LoginTest(LoginTest.java:31)
+</failure>
+    <system-out><![CDATA[Configuring TestNG with: TestNG652Configurator
+0    [main] INFO  core.environment.EnvironmentUtil  - Enviroment is PROD !!
+1    [main] INFO  core.environment.EnvironmentUtil  - Enviroment is PROD !!
+2    [main] INFO  core.environment.EnvironmentUtil  - Environment properties loaded to System
+223  [main] INFO  base.BaseTest  - test is initializing... 08/17/2021 10:44:49
+223  [main] INFO  base.BaseTest  - System Properties was set... 
+282  [main] INFO  base.BaseTest  - Chrome Driver was set as a web driver 
+2884 [main] INFO  base.BaseTest  - tolerable waiting time is 20 SECOND for Web Driver !
+2884 [main] INFO  base.BaseTest  - tolerable page load timeout is 60 SECOND for Web Driver !
+9185 [main] INFO  core.ScreenShot  - ScreenShot was taken
+12528 [main] INFO  core.environment.EnvironmentUtil  - Enviroment is PROD !!
+12528 [main] INFO  scenarios.LoginTest  - Login test is starting
+18433 [main] INFO  core.ScreenShot  - ScreenShot was taken
+31439 [main] INFO  core.ScreenShot  - ScreenShot was taken
+31684 [main] INFO  core.report.ReportBuilderWord  - Report is gathering ...
+31692 [main] INFO  core.ScreenShot  - ScreenShot was taken
+31948 [main] INFO  core.report.ReportBuilderWord  - Report is gathering ...
+32279 [main] INFO  core.report.ReportBuilderWord  - Used parameters ...
+32280 [main] INFO  core.report.ReportBuilderWord  - BR Test Result Email=brgl.furkan@gmail.com
+32281 [main] INFO  core.report.ReportBuilderWord  - Node Tag Name=node_2
+32281 [main] INFO  core.report.ReportBuilderWord  - Hub Ip Address=http://192.168.86.33:4444/wd/hub
+32281 [main] INFO  core.report.ReportBuilderWord  - Test Environment=PROD
+32282 [main] INFO  core.report.ReportBuilderWord  - Driver=webdriver.chrome.driver
+32282 [main] INFO  core.report.ReportBuilderWord  - BR User Password=boutiquerugs123!
+32286 [main] INFO  core.report.ReportBuilderWord  - BR User Email=boutiquerugstest@gmail.com
+32286 [main] INFO  core.report.ReportBuilderWord  - BR Test Name =LoginTest
+32286 [main] INFO  core.report.ReportBuilderWord  - Node Ip Address=192.168.86.27
+32291 [main] INFO  core.report.ReportBuilderWord  - Report steps adding to report.
+32302 [main] INFO  core.report.ReportBuilderWord  - ReportStep [testId=1629929682, stepHeader=Test Has Been Started, stepDescription=Boutique Rugs Quality Assurance Test, activeUrl=ActiveURL, time=Tue Aug 17 10:45:02 EDT 2021, screenShot=C:\Users\brglf\OneDrive\Desktop\New folder\1629929682\1629211498982.jpg]
+32438 [main] INFO  core.report.ReportBuilderWord  - ReportStep [testId=1629929682, stepHeader=LOGIN PAGE, stepDescription=Boutique Rugs Quality Assurance Test, activeUrl=ActiveURL, time=Tue Aug 17 10:45:08 EDT 2021, screenShot=C:\Users\brglf\OneDrive\Desktop\New folder\1629929682\1629211508236.jpg]
+32443 [main] INFO  core.report.ReportBuilderWord  - ReportStep [testId=1629929682, stepHeader=Boutique Rugs Quality Assurance Test, stepDescription=ERROR !! DETAIL :: Expected condition failed: waiting for presence of element located by: By.xpath: //*[@id="main"]/header/div/h1 (tried for 5 second(s) with 1000 milliseconds interval), activeUrl=ActiveURL, time=Tue Aug 17 10:45:21 EDT 2021, screenShot=C:\Users\brglf\OneDrive\Desktop\New folder\1629929682\1629211521242.jpg]
+32472 [main] INFO  core.report.ReportBuilderWord  - ReportStep [testId=1629929682, stepHeader=Boutique Rugs Quality Assurance Test, stepDescription=Test Has Been Completed, activeUrl=ActiveURL, time=Tue Aug 17 10:45:21 EDT 2021, screenShot=C:\Users\brglf\OneDrive\Desktop\New folder\1629929682\1629211521495.jpg]
+]]></system-out>
+    <system-err><![CDATA[Aug 17, 2021 10:44:50 AM org.openqa.selenium.remote.DesiredCapabilities chrome
+INFO: Using `new ChromeOptions()` is preferred to `DesiredCapabilities.chrome()`
+Aug 17, 2021 10:44:52 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+]]></system-err>
+  </testcase>
 </testsuite>

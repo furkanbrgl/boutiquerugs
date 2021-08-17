@@ -217,7 +217,7 @@ public class ReportBuilderWord implements ReportBuilder {
 
                 XWPFRun rSteps = steps.createRun();
 
-                rSteps.setText("Action Time : " + DateUtil.formatDateWithTime(rs.getTime()));
+                rSteps.setText("Action Time: " + DateUtil.formatDateWithTime(rs.getTime()));
                 rSteps.setBold(false);
                 rSteps.addCarriageReturn();
 

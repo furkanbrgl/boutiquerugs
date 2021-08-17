@@ -3,6 +3,7 @@ package scenarios;
 import base.BaseTest;
 import core.ScreenShot;
 import core.environment.EnvironmentUtil;
+import core.report.model.ReportHeader;
 import org.apache.log4j.Logger;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -38,8 +39,9 @@ public class LoginTest extends BaseTest implements LoginPageInputs {
         }
         finally {
 
-            testReportBuilder.gatherReport(testID).getReportHeader().setUsedParameters(this.setUsedTestParameters());
-            testReportBuilder.gatherReport(testID).getReportHeader().setFinishTime(new Date());
+            ReportHeader gatheredReport = testReportBuilder.gatherReport(testID).getReportHeader();
+            gatheredReport.setUsedParameters(this.setUsedTestParameters());
+            gatheredReport.setFinishTime(new Date());
         }
     }
 

@@ -31,7 +31,7 @@ public class LoginPage extends BasePage implements LoginPageConstants {
         }
 
         ScreenShot.takeSnapShotAndAddToReportStep(driver,this.testID,
-                "Login PAGE !!!",
+                "LOGIN PAGE",
                 "Boutique Rugs Quality Assurance Test",
                 ReportStepType.INFO,
                 reportBuilder);

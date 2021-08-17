@@ -12,9 +12,7 @@ import util.ReportStepType;
 
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by furkanbrgl on 04/06/2021.
@@ -70,6 +68,19 @@ public class ScreenShot{
 
 
         return reportBuilder;
+    }
+
+    public static void deleteAllImages(String testID, String getReportFilePath) {
+
+        File folder = new File(getReportFilePath + File.separator + testID);
+        File fList[] = folder.listFiles();
+
+        for (int i = 0; i < fList.length; i++) {
+            String pes = fList[i].getPath();
+            if (pes.endsWith(".jpg")) {
+                boolean success = (new File(fList[i].getPath()).delete());
+            }
+        }
     }
 }
 
