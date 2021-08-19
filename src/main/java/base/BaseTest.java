@@ -9,6 +9,7 @@ import core.report.model.ReportHeader;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterTest;
@@ -74,12 +75,27 @@ public class BaseTest {
             capability.setPlatform(Platform.WINDOWS);
             capability.setCapability("nodeTag", nodeTag);
 
+            // Solution for Timed out receiving message from renderer: 600.000
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("start-maximized");
+            options.addArguments("enable-automation");
+            options.addArguments("--headless");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-infobars");
+            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--disable-browser-side-navigation");
+            options.addArguments("--disable-gpu");
+
+            capability.setCapability(ChromeOptions.CAPABILITY, options);
+
             webDriver = new RemoteWebDriver(new URL(hubIpAddress), capability);
             webDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS).pageLoadTimeout(60, TimeUnit.SECONDS);
             webDriver.manage().window().maximize();
 
-            LOGGER.info("tolerable waiting time is 20 SECOND for Web Driver !");
-            LOGGER.info("tolerable page load timeout is 60 SECOND for Web Driver !");
+            // Solution for Timed out receiving message from renderer: 600.000
+            System.setProperty("webdriver.chrome.silentOutput", "true");
+
+            LOGGER.info("tolerable waiting time is 20 SECOND and page load timeout is 60 SECOND for Web Driver !");
 
             webDriver.get(url);
 
