@@ -79,7 +79,8 @@ public class BaseTest {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("start-maximized");
             options.addArguments("enable-automation");
-            options.addArguments("--headless");
+            //disables browser gui
+            //options.addArguments("--headless");
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-infobars");
             options.addArguments("--disable-dev-shm-usage");
